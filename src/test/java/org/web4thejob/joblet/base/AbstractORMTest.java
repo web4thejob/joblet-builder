@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.web4thejob.context.ContextUtil;
 
 /**
  * @author Veniamin Isaias
@@ -34,6 +35,6 @@ public abstract class AbstractORMTest {
 
     @Before
     public void setUp() {
-        //add start up code here
+        ContextUtil.getMRS().refreshMetaCache();
     }
 }
