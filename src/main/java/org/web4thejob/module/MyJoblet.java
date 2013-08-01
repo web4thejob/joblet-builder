@@ -18,9 +18,12 @@
  ******************************************************************************/
 package org.web4thejob.module;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,32 +31,40 @@ public class MyJoblet extends AbstractJoblet {
 
 	@Override
 	public int getOrdinal() {
-		// TODO Auto-generated method stub
 		return 99;
 	}
 
 	@Override
 	public boolean isInstalled() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public String[] getSchemas() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[]{"example"}; 
 	}
 
 	@Override
 	public List<Resource> getResources() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Resource> resources = new ArrayList<Resource>();
+
+		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+		try {
+			for (Resource resource : resolver
+					.getResources("classpath*:com/example/**/*.hbm.xml")) {
+				resources.add(resource);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+		return resources;
 	}
 
 	@Override
 	public String getBasePackage() {
-		// TODO Auto-generated method stub
-		return null;
+		return "com.example";
 	}
 
 }
