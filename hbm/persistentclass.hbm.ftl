@@ -9,11 +9,20 @@
 <#if c2h.needsTable(clazz)>
     table="${clazz.table.quotedName}"
 </#if>
-<#if clazz.table.schema?exists>
-    schema="${clazz.table.quotedSchema}"
-</#if>
-<#if clazz.table.catalog?exists>
-    catalog="${clazz.table.catalog}"
+<#if cfg.getProperty("hibernate.connection.url")?contains("mysql")>
+	<#if clazz.table.schema?exists>
+	    schema="${clazz.table.quotedSchema}"
+	</#if>
+	<#if clazz.table.catalog?exists>
+	    schema="${clazz.table.catalog}"
+	</#if>
+<#else>
+	<#if clazz.table.schema?exists>
+	    schema="${clazz.table.quotedSchema}"
+	</#if>
+	<#if clazz.table.catalog?exists>
+	    catalog="${clazz.table.catalog}"
+	</#if>
 </#if>
 <#if !clazz.mutable>
     mutable="false"
