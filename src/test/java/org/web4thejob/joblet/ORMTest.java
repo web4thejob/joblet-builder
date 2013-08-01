@@ -18,14 +18,29 @@
  ******************************************************************************/
 package org.web4thejob.joblet;
 
+import java.util.Date;
+
 import org.junit.Test;
+import org.web4thejob.context.ContextUtil;
 import org.web4thejob.joblet.base.AbstractORMTest;
+
+import com.myjoblet.Professor;
+import com.myjoblet.Student;
 
 public class ORMTest extends AbstractORMTest {
 
-	@Test	
+	@Test
 	public void test1() {
-		
+		Student student = new Student();
+		student.setLastName("Sponge");
+		student.setFirstName("Bob");
+		student.setBirthDate(new Date());
+		ContextUtil.getDWS().save(student);
+
+		Professor professor = new Professor();
+		professor.setLastName("Albert");
+		professor.setFirstName("Einstein");
+		ContextUtil.getDWS().save(professor);
 	}
 
 }
