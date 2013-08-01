@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 1, 2013 10:49:28 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myjoblet.Attendee" table="attendee" schema="edu">
+        <meta attribute="friendlyName" inherit="false">Attendee</meta>
+        <id name="id" type="java.lang.Long">
+            <meta attribute="friendlyName" inherit="false">Id</meta>
+            <meta attribute="index" inherit="false">1</meta>
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="course" class="com.myjoblet.Course" fetch="select">
+            <meta attribute="friendlyName" inherit="false">Course</meta>
+            <meta attribute="index" inherit="false">2</meta>
+            <column name="Course" not-null="true" />
+        </many-to-one>
+        <many-to-one name="student" class="com.myjoblet.Student" fetch="select">
+            <meta attribute="friendlyName" inherit="false">Student</meta>
+            <meta attribute="index" inherit="false">3</meta>
+            <column name="Student" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
