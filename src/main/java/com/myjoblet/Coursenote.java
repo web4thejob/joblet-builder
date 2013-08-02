@@ -6,13 +6,14 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
+import org.web4thejob.orm.annotation.HtmlHolder;
 
 public class Coursenote extends AbstractHibernateEntity {
 
 	private Long id;
 	@NotNull
 	private Course course;
-	@NotBlank
+	@NotBlank @HtmlHolder
 	private String notes;
 
 	public Long getId() {
