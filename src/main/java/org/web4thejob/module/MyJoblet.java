@@ -41,7 +41,7 @@ public class MyJoblet extends AbstractJoblet {
 
 	@Override
 	public String[] getSchemas() {
-		return new String[]{"example"}; 
+		return new String[]{"edu"}; 
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class MyJoblet extends AbstractJoblet {
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		try {
 			for (Resource resource : resolver
-					.getResources("classpath*:com/example/**/*.hbm.xml")) {
+					.getResources("classpath*:com/myjoblet/**/*.hbm.xml")) {
 				resources.add(resource);
 			}
 		} catch (IOException e) {
@@ -64,7 +64,7 @@ public class MyJoblet extends AbstractJoblet {
 
 	@Override
 	public String getBasePackage() {
-		return "com.example";
+		return "com.myjoblet";
 	}
 
 }
