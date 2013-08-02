@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.AbstractHibernateEntity;
 
 public class Attendee extends AbstractHibernateEntity {
@@ -48,4 +49,21 @@ public class Attendee extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		if (course != null) {
+			sb.append(ContextUtil.getMRS().deproxyEntity(course).toString());
+		} else {
+			sb.append("?");
+		}
+		sb.append(" / ");
+		if (student != null) {
+			sb.append(ContextUtil.getMRS().deproxyEntity(student).toString());
+		} else {
+			sb.append("?");
+		}
+				
+		return sb.toString();
+	}
 }

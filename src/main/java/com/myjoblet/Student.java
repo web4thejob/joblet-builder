@@ -71,4 +71,8 @@ public class Student extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
+	@Override
+	public String toString() {
+		return lastName + " " + firstName;
+	}
 }

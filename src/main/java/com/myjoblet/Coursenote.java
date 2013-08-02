@@ -49,4 +49,11 @@ public class Coursenote extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
+	@Override
+	public String toString() {
+		if (course != null) {
+			return course.toString() + " note";
+		}
+		return "a note";
+	}
 }

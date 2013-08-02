@@ -79,4 +79,8 @@ public class Course extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
+	@Override
+	public String toString() {
+		return code;
+	}
 }

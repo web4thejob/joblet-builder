@@ -58,4 +58,8 @@ public class Professor extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
+	@Override
+	public String toString() {
+		return lastName + " " + firstName.substring(0,1) + ".";
+	}
 }
