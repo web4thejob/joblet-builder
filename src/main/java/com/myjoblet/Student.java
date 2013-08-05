@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
 
+import com.myjoblet.validator.NotMinor;
+
 public class Student extends AbstractHibernateEntity {
 
 	private Long id;
@@ -18,6 +20,7 @@ public class Student extends AbstractHibernateEntity {
 	@NotBlank
 	private String firstName;
 	@NotNull
+	@NotMinor(value = 18)
 	private Date birthDate;
 	private Set<Attendee> attendees = new HashSet<Attendee>(0);
 

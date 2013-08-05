@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.AbstractHibernateEntity;
 
+import com.myjoblet.validator.AttendeeLimit;
+
+@AttendeeLimit
 public class Attendee extends AbstractHibernateEntity {
 
 	private Long id;

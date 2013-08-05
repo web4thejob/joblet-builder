@@ -18,29 +18,140 @@
  ******************************************************************************/
 package org.web4thejob.joblet;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.joblet.base.AbstractORMTest;
+import org.web4thejob.orm.query.Query;
 
+import com.myjoblet.Attendee;
+import com.myjoblet.Course;
 import com.myjoblet.Professor;
 import com.myjoblet.Student;
 
 public class ORMTest extends AbstractORMTest {
 
 	@Test
-	public void test1() {
+	@Transactional
+	public void testStudent() {
+		Calendar birthDate = Calendar.getInstance();
+		birthDate.set(1977, 3, 3);
+
 		Student student = new Student();
-		student.setLastName("Sponge");
 		student.setFirstName("Bob");
-		student.setBirthDate(new Date());
+		student.setLastName("Sponge");
+		student.setBirthDate(new Date(birthDate.getTimeInMillis()));
 		ContextUtil.getDWS().save(student);
+	}
+
+	@Test
+	@Transactional
+	public void testCourse() {
+		testProfessor();
+
+		Query query = ContextUtil.getEntityFactory()
+				.buildQuery(Professor.class);
+		Professor professor = ContextUtil.getDRS().findFirstByQuery(query);
+		Assert.assertNotNull(professor);
+
+		SecureRandom random = new SecureRandom();
+		String code = new BigInteger(30, random).toString();
+
+		Course course = new Course();
+		course.setCode(code);
+		course.setProfessor(professor);
+		course.setDescription("Blah blah blah...");
+		ContextUtil.getDWS().save(course);
+	}
+
+	@Test
+	@Transactional
+	public void testProfessor() {
+
+		Calendar birthDate = Calendar.getInstance();
+		birthDate.set(1977, 3, 3);
 
 		Professor professor = new Professor();
-		professor.setLastName("Albert");
-		professor.setFirstName("Einstein");
+		professor.setFirstName("Albert");
+		professor.setLastName("Einstein");
 		ContextUtil.getDWS().save(professor);
 	}
 
+	@Test(expected = javax.validation.ConstraintViolationException.class)
+	@Transactional
+	public void testStudentAgeConstraint() {
+
+		Calendar birthDate = Calendar.getInstance();
+		birthDate.set(2000, 7, 1); // age = 13, we expect that this test will
+									// fail
+
+		Student student = new Student();
+		student.setFirstName("Patrick");
+		student.setLastName("Squid");
+		student.setBirthDate(birthDate.getTime());
+		ContextUtil.getDWS().save(student);
+	}
+
+	@Test
+	@Transactional
+	public void testAttendeeLimit() {
+		Query query;
+
+		testStudent();
+		query = ContextUtil.getEntityFactory().buildQuery(Student.class);
+		Student student = ContextUtil.getDRS().findFirstByQuery(query);
+		Assert.assertNotNull(student);
+
+		testProfessor();
+		query = ContextUtil.getEntityFactory().buildQuery(Professor.class);
+		Professor professor = ContextUtil.getDRS().findFirstByQuery(query);
+		Assert.assertNotNull(professor);
+
+		testCourse();
+		query = ContextUtil.getEntityFactory().buildQuery(Course.class);
+		Course course = ContextUtil.getDRS().findFirstByQuery(query);
+		Assert.assertNotNull(course);
+
+		Attendee attendee = new Attendee();
+		attendee.setCourse(course);
+		attendee.setStudent(student);
+		ContextUtil.getDWS().save(attendee);
+	}
+
+	@Test(expected = javax.validation.ConstraintViolationException.class) @Transactional
+	public void testAttendeeLimitExcess() {
+		Query query;
+
+		testProfessor();
+		testCourse();
+
+		query = ContextUtil.getEntityFactory().buildQuery(Course.class);
+		Course course = ContextUtil.getDRS().findFirstByQuery(query);
+		Assert.assertNotNull(course);
+
+		Attendee attendee;
+		for (int i = 1; i < 10; i++) {
+			attendee = new Attendee();
+			attendee.setCourse(course);
+			Calendar birthDate = Calendar.getInstance();
+
+			Student student = new Student();
+			student.setFirstName("Bob");
+			student.setLastName("Sponge");
+			birthDate.set(1977, 3, 3);
+			student.setBirthDate(new Date(birthDate.getTimeInMillis()));
+			ContextUtil.getDWS().save(student);
+			
+			attendee.setStudent(student);
+			ContextUtil.getDWS().save(attendee);
+
+		}
+
+	}
 }
