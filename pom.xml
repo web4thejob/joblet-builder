@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.web4thejob</groupId>
 		<artifactId>web4thejob</artifactId>
-		<version>3.4.2</version>
+		<version>3.4.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>joblet</artifactId>
@@ -50,11 +50,28 @@
 			<artifactId>org.web4thejob.orm.h4</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>javax.el</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.21</version>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
