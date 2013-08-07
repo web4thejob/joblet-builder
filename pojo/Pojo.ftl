@@ -25,6 +25,7 @@ ${pojo.generateImports()}
 
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
+import org.web4thejob.context.ContextUtil;
 import org.hibernate.validator.constraints.NotBlank;
 
 <#if !pojo.isSubclass()>
