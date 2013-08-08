@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 1, 2013 10:49:28 AM by Hibernate Tools 4.0.0 -->
+<!-- Generated Aug 8, 2013 11:59:44 AM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="com.myjoblet.Course" table="course" schema="edu">
         <meta attribute="friendlyName" inherit="false">Course</meta>
@@ -19,6 +19,7 @@
         <property name="code" type="string">
             <meta attribute="friendlyName" inherit="false">Code</meta>
             <meta attribute="index" inherit="false">3</meta>
+            <meta attribute="use-in-tostring">true</meta>
             <column name="Code" length="10" not-null="true" unique="true" />
         </property>
         <property name="description" type="string">

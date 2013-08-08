@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 1, 2013 10:49:28 AM by Hibernate Tools 4.0.0 -->
+<!-- Generated Aug 8, 2013 11:59:44 AM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="com.myjoblet.Student" table="student" schema="edu">
         <meta attribute="friendlyName" inherit="false">Student</meta>
@@ -12,17 +12,19 @@
             <generator class="identity" />
         </id>
         <property name="lastName" type="string">
-            <meta attribute="friendlyName" inherit="false">LastName</meta>
+            <meta attribute="friendlyName" inherit="false">Last Name</meta>
             <meta attribute="index" inherit="false">2</meta>
+            <meta attribute="use-in-tostring">true</meta>
             <column name="LastName" length="200" not-null="true" />
         </property>
         <property name="firstName" type="string">
-            <meta attribute="friendlyName" inherit="false">FirstName</meta>
+            <meta attribute="friendlyName" inherit="false">First Name</meta>
             <meta attribute="index" inherit="false">3</meta>
+            <meta attribute="use-in-tostring">true</meta>
             <column name="FirstName" length="100" not-null="true" />
         </property>
         <property name="birthDate" type="date">
-            <meta attribute="friendlyName" inherit="false">BirthDate</meta>
+            <meta attribute="friendlyName" inherit="false">Birth Date</meta>
             <meta attribute="index" inherit="false">4</meta>
             <column name="BirthDate" length="10" not-null="true" />
         </property>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Aug 1, 2013 10:49:28 AM by Hibernate Tools 4.0.0 -->
+<!-- Generated Aug 8, 2013 11:59:44 AM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
     <class name="com.myjoblet.Attendee" table="attendee" schema="edu">
         <meta attribute="friendlyName" inherit="false">Attendee</meta>
@@ -14,11 +14,13 @@
         <many-to-one name="course" class="com.myjoblet.Course" fetch="select">
             <meta attribute="friendlyName" inherit="false">Course</meta>
             <meta attribute="index" inherit="false">2</meta>
+            <meta attribute="use-in-tostring">true</meta>
             <column name="Course" not-null="true" />
         </many-to-one>
         <many-to-one name="student" class="com.myjoblet.Student" fetch="select">
             <meta attribute="friendlyName" inherit="false">Student</meta>
             <meta attribute="index" inherit="false">3</meta>
+            <meta attribute="use-in-tostring">true</meta>
             <column name="Student" not-null="true" />
         </many-to-one>
     </class>
