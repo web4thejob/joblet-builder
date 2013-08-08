@@ -70,6 +70,18 @@ public class Course extends AbstractHibernateEntity {
 	}
 
 	@Override
+	public String toString() {
+		StringBuilder buffer = new StringBuilder();
+
+		if (buffer.length() > 0) {
+			buffer.append(" / ");
+		}
+		buffer.append(code);
+
+		return buffer.toString();
+	}
+
+	@Override
 	public Serializable getIdentifierValue() {
 		return id;
 	}
@@ -79,8 +91,4 @@ public class Course extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
-	@Override
-	public String toString() {
-		return code;
-	}
 }

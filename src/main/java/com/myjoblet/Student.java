@@ -65,6 +65,23 @@ public class Student extends AbstractHibernateEntity {
 	}
 
 	@Override
+	public String toString() {
+		StringBuilder buffer = new StringBuilder();
+
+		if (buffer.length() > 0) {
+			buffer.append(" ");
+		}
+		buffer.append(lastName);
+
+		if (buffer.length() > 0) {
+			buffer.append(" ");
+		}
+		buffer.append(firstName);
+
+		return buffer.toString();
+	}
+
+	@Override
 	public Serializable getIdentifierValue() {
 		return id;
 	}
@@ -74,8 +91,4 @@ public class Student extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
-	@Override
-	public String toString() {
-		return lastName + " " + firstName;
-	}
 }

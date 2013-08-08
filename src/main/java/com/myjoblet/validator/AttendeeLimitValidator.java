@@ -5,7 +5,7 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.junit.Assert;
+import org.springframework.util.Assert;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.Entity;
 import org.web4thejob.orm.Path;
@@ -29,8 +29,8 @@ public class AttendeeLimitValidator implements
 			return true;
 		}
 
-		Assert.assertNotNull(attendee.getCourse());
-		Assert.assertFalse(attendee.getCourse().isNewInstance());
+		Assert.notNull(attendee.getCourse());
+		Assert.isTrue(!attendee.getCourse().isNewInstance());
 
 		Query query = ContextUtil.getEntityFactory().buildQuery(Attendee.class);
 		query.addCriterion(new Path("course"), Condition.EQ,

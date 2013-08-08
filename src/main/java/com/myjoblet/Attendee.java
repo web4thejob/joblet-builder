@@ -43,6 +43,32 @@ public class Attendee extends AbstractHibernateEntity {
 	}
 
 	@Override
+	public String toString() {
+		StringBuilder buffer = new StringBuilder();
+
+		if (buffer.length() > 0) {
+			buffer.append(" / ");
+		}
+		if (getCourse() != null) {
+			buffer.append(ContextUtil.getMRS().deproxyEntity(course).toString());
+		} else {
+			buffer.append("?");
+		}
+
+		if (buffer.length() > 0) {
+			buffer.append(" / ");
+		}
+		if (getStudent() != null) {
+			buffer.append(ContextUtil.getMRS().deproxyEntity(student)
+					.toString());
+		} else {
+			buffer.append("?");
+		}
+
+		return buffer.toString();
+	}
+
+	@Override
 	public Serializable getIdentifierValue() {
 		return id;
 	}
@@ -52,21 +78,4 @@ public class Attendee extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		if (course != null) {
-			sb.append(ContextUtil.getMRS().deproxyEntity(course).toString());
-		} else {
-			sb.append("?");
-		}
-		sb.append(" / ");
-		if (student != null) {
-			sb.append(ContextUtil.getMRS().deproxyEntity(student).toString());
-		} else {
-			sb.append("?");
-		}
-				
-		return sb.toString();
-	}
 }

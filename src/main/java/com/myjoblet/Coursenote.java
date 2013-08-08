@@ -5,15 +5,15 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.AbstractHibernateEntity;
-import org.web4thejob.orm.annotation.HtmlHolder;
 
 public class Coursenote extends AbstractHibernateEntity {
 
 	private Long id;
 	@NotNull
 	private Course course;
-	@NotBlank @HtmlHolder
+	@NotBlank
 	private String notes;
 
 	public Long getId() {
@@ -41,6 +41,23 @@ public class Coursenote extends AbstractHibernateEntity {
 	}
 
 	@Override
+	public String toString() {
+		StringBuilder buffer = new StringBuilder();
+
+		if (buffer.length() > 0) {
+			buffer.append(" / ");
+		}
+		if (getCourse() != null) {
+			buffer.append(ContextUtil.getMRS().deproxyEntity(course).toString());
+			buffer.append(" notes");
+		} else {
+			buffer.append("?");
+		}
+
+		return buffer.toString();
+	}
+
+	@Override
 	public Serializable getIdentifierValue() {
 		return id;
 	}
@@ -50,11 +67,4 @@ public class Coursenote extends AbstractHibernateEntity {
 		id = 0L;
 	}
 
-	@Override
-	public String toString() {
-		if (course != null) {
-			return course.toString() + " note";
-		}
-		return "a note";
-	}
 }
