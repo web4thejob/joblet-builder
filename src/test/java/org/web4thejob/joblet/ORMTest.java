@@ -21,11 +21,19 @@ package org.web4thejob.joblet;
 import org.junit.Test;
 import org.web4thejob.joblet.base.AbstractORMTest;
 
+/**
+ * <p>
+ * Type your tests here.
+ * <p>
+ * Switch to the <strong>example</strong> branch or visit <a href=
+ * "https://github.com/web4thejob/joblet-builder/blob/example/src/test/java/org/web4thejob/joblet/ORMTest.java"
+ * >github</a> for an example.
+ */
 public class ORMTest extends AbstractORMTest {
 
-	@Test	
+	@Test
 	public void test1() {
-		
+		// Type your test here.
 	}
 
 }
