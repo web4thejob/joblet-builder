@@ -16,11 +16,12 @@
 		<appender-ref ref="console" />
 	</logger>
 
+<!-- 	
 	<logger name="org.hibernate" additivity="false">
 		<level className="info" />
 		<appender-ref ref="console" />
 	</logger>
-
+ -->
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />

@@ -13,13 +13,13 @@ import javax.validation.Payload;
 
 @Target({ TYPE, ANNOTATION_TYPE })
 @Retention(RUNTIME)
-@Constraint(validatedBy =  AttendeeLimitValidator.class )
+@Constraint(validatedBy = AttendeeLimitValidator.class)
 @Documented
 public @interface AttendeeLimit {
 
 	String message() default "Maximum number for attendess has been exceeded";
 
-    Class<?>[] groups() default { };
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+	Class<? extends Payload>[] payload() default {};
 }

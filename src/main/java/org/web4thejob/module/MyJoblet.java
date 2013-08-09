@@ -41,7 +41,7 @@ public class MyJoblet extends AbstractJoblet {
 
 	@Override
 	public String[] getSchemas() {
-		return new String[]{"edu"}; 
+		return new String[] { "edu" };
 	}
 
 	@Override

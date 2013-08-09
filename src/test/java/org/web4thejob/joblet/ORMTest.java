@@ -124,7 +124,8 @@ public class ORMTest extends AbstractORMTest {
 		ContextUtil.getDWS().save(attendee);
 	}
 
-	@Test(expected = javax.validation.ConstraintViolationException.class) @Transactional
+	@Test(expected = javax.validation.ConstraintViolationException.class)
+	@Transactional
 	public void testAttendeeLimitExcess() {
 		Query query;
 
@@ -147,10 +148,9 @@ public class ORMTest extends AbstractORMTest {
 			birthDate.set(1977, 3, 3);
 			student.setBirthDate(new Date(birthDate.getTimeInMillis()));
 			ContextUtil.getDWS().save(student);
-			
+
 			attendee.setStudent(student);
 			ContextUtil.getDWS().save(attendee);
-
 		}
 
 	}
